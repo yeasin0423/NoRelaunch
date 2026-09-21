@@ -17,8 +17,8 @@
 - `NoRelaunch.kt:3-8` imports 3 API-34 constants (`CONFIG_FONT_WEIGHT_ADJUSTMENT`, `CONFIG_GRAMMATICAL_GENDER`, `CONFIG_ASSETS_PATHS`). They are `public static final int` inlined at compile time against `compileSdk 36`; harmless on A13 (`shouldRelaunchLocked` just never sees those bits). Do not revert `minSdk` to 34.
 - No other API-34 usage found (`LoadPackageParam.kt:20` is `SDK_INT` only). `enableEdgeToEdge()` is via AndroidX.
 
-## CI (` .github/workflows/build.yml`)
-- `runs-on: ubuntu-latest`, `actions/setup-java@v4` (temurin 21, gradle cache), `android-actions/setup-android@v3`, `gradle/actions/setup-gradle@v4`, `assembleDebug` + `assembleRelease`, `actions/upload-artifact@v4`.
+## CI (`.github/workflows/build.yml`)
+- `runs-on: ubuntu-latest`, `actions/setup-java@v4` (temurin 21, gradle cache), `gradle/actions/setup-gradle@v4`, `assembleDebug` + `assembleRelease`, `actions/upload-artifact@v4`. No `android-actions/setup-android` (its `sdkmanager tools` package is removed; runner image already has `cmdline-tools 16.0` + AGP auto-downloads `compileSdk 36`).
 - Triggers: `push`/`pull_request` on `main`/`master` + `workflow_dispatch`. Check Actions tab after `git push origin main`.
 
 ## Git
