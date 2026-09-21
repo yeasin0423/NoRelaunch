@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.yifeplayte.norelaunch"
-        minSdk = 34
+        minSdk = 33
         targetSdk = 36
         versionCode = 3
         versionName = "1.1.1"
